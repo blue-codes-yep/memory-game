@@ -11,9 +11,30 @@ function App() {
           Match cards to win
         </p>
       </header>
-      <div className="MemoryCard gradient">
-        <MemoryCard />
-      </div>
+      <div className="row">
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        </div>
+        <div className="row">
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        </div>
+        <div className="row">
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        </div>
+        <div className="row">
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        </div>
     </div>
   );
 }
