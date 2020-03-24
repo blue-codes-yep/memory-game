@@ -12,7 +12,12 @@ function App() {
         </p>
       </header>
       <div className="MemoryCard gradient">
-        <MemoryCard />
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
       </div>
     </div>
   );
