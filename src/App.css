@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.subtitle {
+  font-size: calc(5px + 2vmin);
+  color: #666666;
 }
