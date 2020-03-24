@@ -6,12 +6,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>Memory Game</h1>
+        <h1>Memory Game</h1>
         <p className="subtitle">
-         Match cards to win
+          Match cards to win
         </p>
       </header>
-      <MemoryCard />
+      <div className="MemoryCard gradient">
+        <MemoryCard />
+      </div>
     </div>
   );
 }

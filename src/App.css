@@ -41,3 +41,21 @@
   font-size: calc(5px + 2vmin);
   color: #666666;
 }
+
+
+.gradient {
+  background-image:
+  linear-gradient(
+    to right, 
+    #7ae6ee,
+    #7ae6ee 15%,
+    #3fa9b1 15%,
+    #3fa9b1 85%,
+    #7ae6ee 85%
+    );
+}
+
+img {
+  width: 80%;
+  padding-top: 13px;
+}

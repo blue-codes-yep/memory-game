@@ -1,0 +1,20 @@
+.MemoryCard {
+    display: inline-block;
+    width: 150px;
+    height: 80px;
+    margin: 3px;
+    border-radius: 5px;
+    border: 3px color navy; 
+    cursor: pointer;
+}
+
+.gradient {
+    height: 100px;
+    background-color: red;
+    background-image:
+      linear-gradient(
+        to right,
+        red,
+        yellow 10%
+      );
+  }
