@@ -4,8 +4,8 @@ import './MemoryCard.css';
 class MemoryCard extends Component {
     render() {
         return (
-            <div className="MemoryCard gradient">
-            <img src="https://www.digitalcrafts.com/img/digitalcrafts-logo-white-y.png" alt="DcLogo" /></div>
+            <div className="MemoryCard gradient"><div className="MemoryCardInner"><div className="MemoryCardBack"><img src="https://www.digitalcrafts.com/img/digitalcrafts-logo-white-y.png" alt="DcLogo" /></div><div className="MemoryCardFront">∆</div>
+            </div></div>
         )
     }
 }
