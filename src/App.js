@@ -62,6 +62,7 @@ class App extends Component {
       symbol={card.symbol} 
       isFlipped={card.isFlipped}
       key={index}
+      pickCard={this.pickCard.bind(this,index)}
       />
     });
     return (
