@@ -29,14 +29,32 @@ const generateDeck = () => {
   return shuffle(deck);
 }
 
-console.log(generateDeck());
 
 class App extends Component {
 
   state = {
     deck: generateDeck(),
-    pickedCards: []
+    pickedCards: [],
   };
+
+  pickCard(cardIndex) {
+    if (this.state.deck[cardIndex].isFlipped) {
+      return;
+    }
+    let cardToFlip = { ...this.state.deck[cardIndex] };
+    cardToFlip.isFlipped = true;
+
+    let newPickedCards = this.state.pickedCards.concat(cardIndex);
+    
+    let newDeck = this.state.deck.map((card, index) => {
+      if (cardIndex === index) {
+        return cardToFlip;
+      }
+      return card;
+    });
+    this.setState({deck: newDeck, pickedCards: newPickedCards});
+  }
+  
 
   render() {
     let cardsJSX = this.state.deck.map((card, index) => {
