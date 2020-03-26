@@ -25,8 +25,9 @@ const generateDeck = () => {
       isFlipped: false,
       symbol: symbols[i % 8]
     });
-    return shuffle(deck);
+    
   }
+  return shuffle(deck);
 }
 
 console.log(generateDeck());
