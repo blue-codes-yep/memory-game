@@ -6,7 +6,7 @@ import './App.css';
 const shuffle = deck => {
   let j = '';
   let temp = '';
-  for(let i = deck.length -1; i > 0; i--) {
+  for (let i = deck.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1));
     temp = deck[i]
     deck[i] = deck[j]
@@ -25,7 +25,6 @@ const generateDeck = () => {
       isFlipped: false,
       symbol: symbols[i % 8]
     });
-    
   }
   return shuffle(deck);
 }
@@ -40,7 +39,12 @@ class App extends Component {
   };
 
   render() {
-
+    let cardsJSX = this.state.deck.map((card, index) => {
+      return <MemoryCard 
+      symbol={card.symbol} 
+      isFlipped={card.isFlipped}
+      />
+    });
     return (
       <div className="App">
         <header className="App-header">
@@ -50,28 +54,17 @@ class App extends Component {
         </p>
         </header>
         <div className="row">
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
+          {cardsJSX.slice(0, 4)}
         </div>
         <div className="row">
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
+          {cardsJSX.slice(4, 8)}
         </div>
         <div className="row">
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
+          {cardsJSX.slice(8, 12)}
         </div>
         <div className="row">
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
-          <MemoryCard />
+          {cardsJSX.slice(12, 16)}
+
         </div>
       </div>
     );
