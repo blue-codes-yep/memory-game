@@ -8,7 +8,7 @@ class MemoryCard extends Component {
     
       clickHandler = () => {
         this.setState({
-          isFlipped: !this.state.isFlipped
+          isFlipped: !this.props.isFlipped
         });
       };
     
@@ -24,7 +24,7 @@ class MemoryCard extends Component {
                     <div className="MemoryCardBack">
                         <img src="https://www.digitalcrafts.com/img/digitalcrafts-logo-white-y.png" alt="DcLogo" /></div>
                     <div className="MemoryCardFront">
-                        ∆
+                        {this.props.symbol}
                         </div>
                 </div>
             </div>
