@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import './MemoryCard.css';
 
-
-
 class MemoryCard extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     let memoryCardInnerClass = this.props.isFlipped ? "MemoryCardInner flipped" : "MemoryCardInner";

@@ -30,6 +30,7 @@ const generateDeck = () => {
 }
 
 
+
 class App extends Component {
 
   state = {
@@ -45,24 +46,58 @@ class App extends Component {
     cardToFlip.isFlipped = true;
 
     let newPickedCards = this.state.pickedCards.concat(cardIndex);
-    
+
     let newDeck = this.state.deck.map((card, index) => {
       if (cardIndex === index) {
         return cardToFlip;
       }
       return card;
     });
-    this.setState({deck: newDeck, pickedCards: newPickedCards});
-  }
-  
 
+    if (newPickedCards === 2) {
+      let card1Index = newPickedCards[0],
+          card2Index = newPickedCards[1];
+
+      if (card1Index !== card2Index) {
+        setTimeout(
+					this.unflipCards.bind(this, card1Index, card2Index),
+					1000
+				)
+      }
+      newPickedCards = [];
+    }
+    this.setState({ deck: newDeck, pickedCards: newPickedCards });
+  }
+
+
+  unflipCards(card1Index, card2Index) {
+    let card1 = { ...this.state.deck[card1Index] },
+      card2 = { ...this.state.deck[card2Index] }
+
+    card1.isFlipped = false;
+    card2.isFlipped = false;
+
+    let newDeck = this.state.deck.map((card, index) => {
+      if (index === card1) {
+        return card1;
+      }
+      if (index === card2) {
+        return card2;
+      }
+      return card;
+    }
+    )
+    this.setState({
+      deck: newDeck,
+    })
+  }
   render() {
     let cardsJSX = this.state.deck.map((card, index) => {
-      return <MemoryCard 
-      symbol={card.symbol} 
-      isFlipped={card.isFlipped}
-      key={index}
-      pickCard={this.pickCard.bind(this,index)}
+      return <MemoryCard
+        symbol={card.symbol}
+        isFlipped={card.isFlipped}
+        key={index}
+        pickCard={this.pickCard.bind(this, index)}
       />
     });
     return (
