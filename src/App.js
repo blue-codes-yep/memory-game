@@ -43,6 +43,7 @@ class App extends Component {
       return <MemoryCard 
       symbol={card.symbol} 
       isFlipped={card.isFlipped}
+      key={index}
       />
     });
     return (
