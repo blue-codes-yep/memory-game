@@ -38,55 +38,53 @@ class App extends Component {
     pickedCards: [],
   };
 
-  pickCard(cardIndex) {
-    if (this.state.deck[cardIndex].isFlipped) {
+  pickCard = cardIndex => {
+    const { deck } = this.state;
+    if (deck[cardIndex].isFlipped === true) {
       return;
     }
-    let cardToFlip = { ...this.state.deck[cardIndex] };
+    const cardToFlip = { ...this.state.deck[cardIndex] };
     cardToFlip.isFlipped = true;
 
-    let newPickedCards = this.state.pickedCards.concat(cardIndex);
-
-    let newDeck = this.state.deck.map((card, index) => {
+    let newDeck = deck.map((card, index) => {
       if (cardIndex === index) {
         return cardToFlip;
       }
       return card;
     });
 
-    if (newPickedCards === 2) {
-      let card1Index = newPickedCards[0],
-          card2Index = newPickedCards[1];
+    let newPickedCards = this.state.pickedCards.concat(cardIndex);
+    if (newPickedCards.length === 2) {
+      const card1Index = newPickedCards[0];
+      const card2Index = newPickedCards[1];
+      const firstCard = newDeck[card1Index];
+      const secondCard = newDeck[card2Index];
 
-      if (card1Index !== card2Index) {
-        setTimeout(
-					this.unflipCards.bind(this, card1Index, card2Index),
-					1000
-				)
+      if (firstCard.symbol !== secondCard.symbol) {
+        setTimeout(() => {
+          this.unflipCards(card1Index, card2Index);
+        }, 1000);
       }
+
       newPickedCards = [];
     }
-    this.setState({ deck: newDeck, pickedCards: newPickedCards });
-  }
+
+    this.setState({
+      deck: newDeck,
+      pickedCards: newPickedCards
+    });
+  };
 
 
   unflipCards(card1Index, card2Index) {
-    let card1 = { ...this.state.deck[card1Index] },
-      card2 = { ...this.state.deck[card2Index] }
+    const { deck } = this.state;
+    const newDeck = deck.map(card => {
+      return { ...card };
+    });
 
-    card1.isFlipped = false;
-    card2.isFlipped = false;
+    newDeck[card1Index].isFlipped = false;
+    newDeck[card2Index].isFlipped = false;
 
-    let newDeck = this.state.deck.map((card, index) => {
-      if (index === card1) {
-        return card1;
-      }
-      if (index === card2) {
-        return card2;
-      }
-      return card;
-    }
-    )
     this.setState({
       deck: newDeck,
     })
