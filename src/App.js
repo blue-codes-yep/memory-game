@@ -30,6 +30,7 @@ const generateDeck = () => {
 }
 
 
+
 class App extends Component {
 
   state = {
@@ -37,31 +38,64 @@ class App extends Component {
     pickedCards: [],
   };
 
-  pickCard(cardIndex) {
-    if (this.state.deck[cardIndex].isFlipped) {
+  pickCard = cardIndex => {
+    const { deck } = this.state;
+    if (deck[cardIndex].isFlipped === true) {
       return;
     }
-    let cardToFlip = { ...this.state.deck[cardIndex] };
+    const cardToFlip = { ...this.state.deck[cardIndex] };
     cardToFlip.isFlipped = true;
 
-    let newPickedCards = this.state.pickedCards.concat(cardIndex);
-    
-    let newDeck = this.state.deck.map((card, index) => {
+    let newDeck = deck.map((card, index) => {
       if (cardIndex === index) {
         return cardToFlip;
       }
       return card;
     });
-    this.setState({deck: newDeck, pickedCards: newPickedCards});
-  }
-  
 
+    let newPickedCards = this.state.pickedCards.concat(cardIndex);
+    if (newPickedCards.length === 2) {
+      const card1Index = newPickedCards[0];
+      const card2Index = newPickedCards[1];
+      const firstCard = newDeck[card1Index];
+      const secondCard = newDeck[card2Index];
+
+      if (firstCard.symbol !== secondCard.symbol) {
+        setTimeout(() => {
+          this.unflipCards(card1Index, card2Index);
+        }, 1000);
+      }
+
+      newPickedCards = [];
+    }
+
+    this.setState({
+      deck: newDeck,
+      pickedCards: newPickedCards
+    });
+  };
+
+
+  unflipCards(card1Index, card2Index) {
+    const { deck } = this.state;
+    const newDeck = deck.map(card => {
+      return { ...card };
+    });
+
+    newDeck[card1Index].isFlipped = false;
+    newDeck[card2Index].isFlipped = false;
+
+    this.setState({
+      deck: newDeck,
+    })
+  }
   render() {
     let cardsJSX = this.state.deck.map((card, index) => {
-      return <MemoryCard 
-      symbol={card.symbol} 
-      isFlipped={card.isFlipped}
-      key={index}
+      return <MemoryCard
+        symbol={card.symbol}
+        isFlipped={card.isFlipped}
+        key={index}
+        pickCard={this.pickCard.bind(this, index)}
       />
     });
     return (
